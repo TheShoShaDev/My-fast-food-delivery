@@ -8,11 +8,12 @@
 	<link rel="stylesheet" href="~/css/site.css">
 
 	<script>
-		function ShowBanner(ProductName, ProductDescription, ImagePath) {
-			
+		function ShowBanner(ProductName, ProductDescription, ImagePath, id) {
+
 			document.getElementById("banner_name").innerHTML = ProductName;
 			document.getElementById("banner_desc").innerHTML = ProductDescription;
 			document.getElementById("banner_image").src = ImagePath;
+			document.getElementById("product_link").href = "/Forms/ProductPage?Id=" + id;
 		}
 
 	</script>
@@ -77,7 +78,7 @@
 					×
 				</a>
 
-				<a asp-page="/Forms/ProductPage" asp-route-Id=@Id>Go to product page</a>
+				<a id="product_link" href="#">Go to product page</a>
 
 			</div>
 		</div>
@@ -91,9 +92,9 @@
 				</sup>
 			</h2>
 			<ul class="mainHome_products__list">
-				@foreach (var pizza in Model.GetPizzaList())
+				@foreach (var Product in Model.GetPizzaList())
 				{
-					string ImagePath = "~/Images/Pizzas/" + (@pizza.ImageTitle + ".png");
+					string ImagePath = "~/Images/Pizzas/" + (@Product.ImageTitle + ".png");
 
 					<li>
 						<article class="styles_productCard">
@@ -102,11 +103,9 @@
 									<img src="@ImagePath" class="w-100" asp-append-version="true">
 								</span>
 							</div>
-							<a class="btn styles_productCard__header" id="@pizza.ImageTitle" href="#banner" onclick="ShowBanner('@pizza.ProductName', '@pizza.ProductDescription', '@ImagePath')">
-								<!--asp-page="/Forms/ProductPage" asp-route-Product="@pizza"-->
-							@pizza.ProductName
+							<a class="btn styles_productCard__header" id="@Product.ImageTitle" href="#banner" onclick="ShowBanner('@Product.ProductName', '@Product.ProductDescription', '@ImagePath', '@Product.Id')">
+							@Product.ProductName
 							</a>
-							<a class="btn btn-primary mt-1" asp-page="/Forms/ProductPage" asp-route-Id="@pizza.Id"></a>
 							<br />
 						</article>
 					</li>
@@ -118,10 +117,5 @@
 </body>
 @functions
 {
-	int Id { get; set; } = 0;
-
-	public void CheckAdressOnLoad()
-	{
-
-	}
+	
 }

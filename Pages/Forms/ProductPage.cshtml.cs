@@ -16,10 +16,7 @@ namespace Grill1.Pages.Forms
     {
 		public ProductModel Product = new ProductModel();
 		
-        [BindProperty(SupportsGet = true)]
-		public int Id { get; set; }
-
-		public void OnGet()
+		public void OnGet(int Id)
         {
             string sqlQuery = "SELECT * FROM Products Where Id = '" + Id + "'";
             using (var db = DbHelper.GetConnection())
@@ -37,7 +34,7 @@ namespace Grill1.Pages.Forms
                 }
                 else
                 {
-                    Redirect("/Error");
+                    RedirectToPage("/Error");
                 }
 
             }

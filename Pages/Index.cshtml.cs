@@ -20,13 +20,13 @@ namespace WebApplication1.Pages
 
         }
 
-		public List<Pizza> GetPizzaList()
+		public List<ProductModel> GetPizzaList()
 		{
 			using (var db = DbHelper.GetConnection())
             {
-                List<Pizza> PizzasList = db.Query<Pizza>("SELECT * FROM Products Where ProductType = 'Pizza' ORDER BY ProductName DESC").ToList();
+                List<ProductModel> ProductList = db.Query<ProductModel>("SELECT * FROM Products Where ProductType = 'Pizza' ORDER BY ProductName DESC").ToList();
 
-                return PizzasList;
+                return ProductList;
 			}
 		}
 	}
