@@ -21,34 +21,31 @@ namespace Grill1.Pages.Forms
 
 		public void OnGet()
         {
-			int _Id = Id;
-			_Id++;
-			string sqlQuery = "SELECT * FROM Products Where Id = '" + _Id + "'";
-			using (var db = DbHelper.GetConnection())
-			{
-									
-				var gotProduct = db.QuerySingleOrDefault(sqlQuery);
+            string sqlQuery = "SELECT * FROM Products Where Id = '" + Id + "'";
+            using (var db = DbHelper.GetConnection())
+            {
 
-				if (gotProduct != null)
-				{
-					Product.Id = gotProduct.Id;
-					Product.ImageTitle = gotProduct.ImageTitle;
-					Product.ProductName = gotProduct.ProductName;
-					Product.ProductDescription = gotProduct.ProductDescription;
-					Product.ProductPrize = gotProduct.ProductPrize;
-				}
-				else
-				{
+				var gotProduct = db.Query<ProductModel>(sqlQuery).ToList()[0];
 
-				}
-			
-			}
+                if (gotProduct != null)
+                {
+                    Product.Id = gotProduct.Id;
+                    Product.ImageTitle = gotProduct.ImageTitle;
+                    Product.ProductName = gotProduct.ProductName;
+                    Product.ProductDescription = gotProduct.ProductDescription;
+                    Product.ProductPrize = gotProduct.ProductPrize;
+                }
+                else
+                {
+                    Redirect("/Error");
+                }
 
+            }
         }
 
         public void OnPost() 
-        {
+        { 
 
-		}
+        }
 	}
 }
