@@ -1,0 +1,132 @@
+﻿@page
+@model IndexModel
+@{
+	ViewData["Title"] = "Home page";
+}
+
+<head>
+	<link rel="stylesheet" href="~/css/site.css">
+
+	<script>
+		function ShowBanner(ProductName, ProductDescription, ImagePath, Id) {
+			
+			document.getElementById("banner_name").innerHTML = ProductName;
+			document.getElementById("banner_desc").innerHTML = ProductDescription;
+			document.getElementById("banner_image").src = ImagePath;
+			document.getElementById("ItemId").innerHTML = Id;
+		}
+
+		function GetItemId()
+		{
+			return document.getElementById("ItemId").innerHTML;
+		}
+
+	</script>
+
+</head>
+
+<body>
+	<ul class="mainHome_list">
+		<li class="mainHome_item">
+			<a class="mainHome_link" href="#breakfast">
+				Breakfast
+			</a>
+		</li>
+		<li class="mainHome_item">
+			<a class="mainHome_link" href="#combo">
+				Combo
+			</a>
+		</li>
+		<li class="mainHome_item">
+			<a class="mainHome_link" href="#pizza">
+				Pizza
+			</a>
+		</li>
+		<li class="mainHome_item">
+			<a class="mainHome_link" href="#pies">
+				Pies
+			</a>
+		</li>
+		<li class="mainHome_item">
+			<a class="mainHome_link" href="#wok">
+				Wok
+			</a>
+		</li>
+		<li class="mainHome_item">
+			<a class="mainHome_link" href="#soup">
+				Soup
+			</a>
+		</li>
+
+	</ul>
+
+	<div class="text-center">
+
+		<div class="banner" id="banner">
+			<div hidden id="ItemId"></div>
+			<div class="banner_content">
+				<div class="banner_image">
+					<span class="image" id="banner_image">
+						<img src="~/Images/Pizzas/" class="w-100" asp-append-version="true">
+					</span>
+				</div>
+				<div class="banner_NDPlist">
+					<div class="banner_name" id="banner_name">
+						
+					</div>
+					<div class="banner_desc" id="banner_desc">
+						
+					</div>
+				</div>
+
+				<a href="#"
+				   class="banner-close">
+					×
+				</a>
+
+				<a asp-page="/Forms/ProductPage" asp-route-Id="GetItemId()">Go to product page</a>
+
+			</div>
+		</div>
+
+		<section class="container" id="pizza">
+			<h2 class="mainHome_products__header">
+				Pizza
+				&nbsp <!--Space -->
+				<sup>
+					@Model.GetPizzaList().Count
+				</sup>
+			</h2>
+			<ul class="mainHome_products__list">
+				@foreach (var pizza in Model.GetPizzaList())
+				{
+					string ImagePath = "~/Images/Pizzas/" + (@pizza.ImageTitle + ".png");
+
+					<li>
+						<article class="styles_productCard">
+							<div class="styles_productCard__imgWrapper">
+								<span class="image">
+									<img src="@ImagePath" class="w-100" asp-append-version="true">
+								</span>
+							</div>
+							<a class="btn styles_productCard__header" id="@pizza.ImageTitle" href="#banner" onclick="ShowBanner('@pizza.ProductName', '@pizza.ProductDescription', '@ImagePath', '@pizza.Id')">
+								<!--asp-page="/Forms/ProductPage" asp-route-Product="@pizza"-->
+							@pizza.ProductName
+							</a>
+							<a class="btn btn-primary mt-1" asp-page="/Forms/ProductPage" asp-route-Id="@pizza.Id"></a>
+							<br />
+						</article>
+					</li>
+				}
+			</ul>
+		</section>
+
+	</div>
+</body>
+@functions
+{
+	public void CheckAdressOnLoad()
+	{
+
+	}
+}
