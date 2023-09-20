@@ -6,12 +6,8 @@
 		public string ProductName { get; set; }
 		public string ProductDescription { get; set; }
 		public float ProductPrize { get; set; }
+		public string ExtraDescripton { get; set; }
 		public int Id { get; set; }
-
-		public Type GetClassType()
-		{
-			return typeof(ProductModel);
-		}
 
 	}
 

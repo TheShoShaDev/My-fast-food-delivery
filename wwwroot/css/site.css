@@ -98,9 +98,40 @@ body {
     max-width: 100%;
 }
 
+.productContaner {
+    padding: 0;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.productDiscContaner {
+
+}
+
+.productPrize {
+
+}
+
+.productName {
+
+}
+.productNameContaner {
+    padding: 0;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.productDisc {
+
+}
+.extraDisc:target {
+    visibility: visible;
+}
+
 /*Grill 1 Stolen and Edited Css*/
 .mainHome_link {
-
     display: block;
     width: 100%;
     text-align: center;

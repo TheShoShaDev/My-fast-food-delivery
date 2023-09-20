@@ -1,5 +1,26 @@
 ﻿@page
 @model Grill1.Pages.Forms.ProductPageModel
 @{
-	<img src="@Model.Product.ImageTitle" class="w-100" asp-append-version="true">
+	<head>
+		
+	</head>
+
+	<body>
+		<div class="productContaner">
+			<div class="image"><img src="@Model.GetImagePath()" class="w-100" asp-append-version="true"></div>
+			<div class="productDiscContaner">
+				<div class="productNameContaner">
+					<h1 class="productName">@Model.Product.ProductName</h1>
+					<div class="extraDisc">@Model.GetExtraDesc()</div>
+				</div>
+				<div id="kindaImage">
+					<div class="productDisc">
+						@Model.Product.ProductDescription
+					</div>
+				</div>
+
+				<div class="productPrize">Order for @Model.Product.ProductPrize *insert currency*</div>
+			</div>
+		</div>
+	</body>
 }

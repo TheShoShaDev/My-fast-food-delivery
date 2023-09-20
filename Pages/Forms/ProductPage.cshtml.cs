@@ -44,5 +44,15 @@ namespace Grill1.Pages.Forms
         { 
 
         }
+
+        public string GetImagePath()
+        {
+            return "~/Images/Pizzas/" + (Product.ImageTitle + ".png");
+        }
+
+        public string GetExtraDesc()
+        {
+            return (Product.ExtraDescripton == "") ? "Extras is not defined" : Product.ExtraDescripton;
+        }
 	}
 }
