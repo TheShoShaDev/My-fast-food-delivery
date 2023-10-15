@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Grill1.Pages.Forms
 {
-	[Authorize]
+	//[Authorize]
 	public class AdminPageModel : PageModel
     {
         public void OnGet()
