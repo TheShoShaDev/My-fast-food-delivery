@@ -8,11 +8,15 @@ namespace Grill1.Pages.Forms
 	//[Authorize]
 	public class AdminPageModel : PageModel
     {
-        ProductModel Product = new ProductModel();
+		public void OnGet()
+		{
 
-        public void OnGet()
-        {
-            
-        }
-    }
+		}
+
+		public void OnPost(string ProductName, string ProductDescription, int ProductPrize)
+		{
+
+		}
+	}
+}
 }
